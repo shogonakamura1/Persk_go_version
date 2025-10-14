@@ -5,10 +5,16 @@ services:
       POSTGRES_USER: app
       POSTGRES_PASSWORD: app
       POSTGRES_DB: appdb
-    ports:
-      - "5432:5432"
     volumes:
       - db_data:/var/lib/postgresql/data
+
+  app:
+    build:
+      context: .
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
 
 volumes:
   db_data:
